@@ -11,7 +11,7 @@
 2. 例如现在平台下有10个银行，每个银行有20个服务商，每个服务商有30个商户，并且要求每个银行、服务商、商户都有自己的角色、权限、用户管理
 
 ### 按上面这种业务层级机构来使用goadmin完成权限管理，使用步骤如下：
-1. git clone https://github.com/gopark001/goadmin
+1. git clone https://github.com/wangwei123/goadmin
 2. cd goadmin/configs
 3. 修改mysql.toml，将mysql配置信息改为你的数据库信息，数据库名称可随意
 4. 修改casbin.toml，将mysql配置信息改为你的数据库信息，且数据库名称必须为casbin
