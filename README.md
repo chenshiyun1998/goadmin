@@ -1,10 +1,10 @@
 # goadmin
-1. goadmin一键生成自由灵活配置角色、权限、用户管理脚手架代码的生成工具
-2. goadmin可一键生成开箱即用的源码程序，一键生成基础的增删改查前后端代码
-2. 生成的前端代码使用Vue、ElementUI、vue-element-admin等开源项目
-3. 生成的后端代码使用gin、xormplus、casbin、gf、jwt等开源项目
+1. goadmin可一键生成具有多租户的权限管理功能的脚手架，包含前端和后端代码
+2. goadmin可根据配置文件一键生成基础的增删改查前端和后端代码
+3. 生成的前端代码使用Vue、ElementUI、vue-element-admin等开源项目
+4. 生成的后端代码使用gin、xormplus、casbin、gf、jwt等开源项目
 
-# 多层级权限架构
+# 多租户多层级权限架构
 1. 例如我的系统层级结构是：平台->银行->服务商->商家，我们暂且叫这四个层级为机构类型，如下图：
 ![权限架构](https://images.gitee.com/uploads/images/2019/0718/093322_313ae8bc_88608.jpeg "")
 
