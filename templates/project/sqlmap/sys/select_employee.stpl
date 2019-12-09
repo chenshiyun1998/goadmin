@@ -1,0 +1,21 @@
+SELECT *
+FROM
+employee e
+inner join role r on e.role_id = r.id
+where e.deleted_at is null
+{% if org_type_id %}
+    and e.org_type_id = ?org_type_id
+{% endif %}
+{% if org_id %}
+    and e.org_id = ?org_id
+{% endif %}
+{% if is_admin %}
+    and r.is_admin = ?is_admin
+{% endif %}
+{% if keyword %}
+    and (e.code like ?keyword or e.account like ?keyword or e.phone like ?keyword or e.name like ?keyword)
+{% endif %}
+order by e.id desc
+{% if limit %}
+    limit ?offset,?limit
+{% endif %}

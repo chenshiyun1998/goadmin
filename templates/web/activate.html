@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>激活会员卡</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0
+    }
+
+    .translateCenter {
+      width: 40%;
+      height: 20%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+  <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+    $(function() {
+      console.log(window.location.href)
+      var openid = getUrlParam("openid")
+      var activate_ticket = getUrlParam("activate_ticket")
+      var card_id = getUrlParam("card_id")
+      var encrypt_code = getUrlParam("encrypt_code")
+      console.log(decodeURI(decodeURI(encrypt_code)))
+
+      if (activate_ticket) {
+        var data = {
+          open_id: openid,
+          activate_ticket: activate_ticket,
+          card_id: card_id,
+          encrypt_code: decodeURI(encrypt_code)
+        }
+
+        $.ajax({
+          type: "POST",
+          url: 'https://api.moka360.vip/admin_api/wechat_card/activate',
+          data: JSON.stringify(data),
+          contentType: "application/json",
+          success: function(data) {
+            if (data.code == 0) {
+              $('#divH1').html('激活成功</br>本页面2秒后将自动关闭')
+              setTimeout(function() {
+                //这个可以关闭安卓系统的手机
+                document.addEventListener('WeixinJSBridgeReady', function() {
+                  WeixinJSBridge.call('closeWindow');
+                }, false);
+                //这个可以关闭ios系统的手机
+                WeixinJSBridge.call('closeWindow');
+              }, 2000)
+            }
+          }
+        });
+      }
+    });
+
+    //获取url中的参数
+    function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg); //匹配目标参数
+      if (r != null) return unescape(r[2]);
+      return null; //返回参数值
+    };
+  </script>
+</head>
+
+<body>
+  <div class="translateCenter"><h1 id="divH1">激活中...</h1>
+  </div>
+</body>
+
+</html>

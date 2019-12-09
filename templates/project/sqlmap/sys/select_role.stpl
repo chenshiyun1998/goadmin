@@ -1,0 +1,17 @@
+SELECT *
+FROM
+role
+where deleted_at is null
+{% if name %}
+    and `name` like ?name
+{% endif %}
+{% if org_type_id %}
+    and `org_type_id` = ?org_type_id
+{% endif %}
+{% if is_admin %}
+    and `is_admin` = ?is_admin
+{% endif %}
+order by id desc
+{% if limit %}
+    limit ?offset,?limit
+{% endif %}

@@ -1,0 +1,10 @@
+node_modules
+dist
+.idea/
+安装.bat
+*.bat
+html/
+html.zip
+npm-debug.log
+eparking-admin/
+*.gz

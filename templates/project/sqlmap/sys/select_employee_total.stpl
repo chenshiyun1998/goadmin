@@ -1,0 +1,13 @@
+SELECT count(*)
+FROM
+employee
+where deleted_at is null
+{% if org_type_id %}
+    and org_type_id = ?org_type_id
+{% endif %}
+{% if org_id %}
+    and org_id = ?org_id
+{% endif %}
+{% if keyword %}
+    and (code like ?keyword or account like ?keyword or phone like ?keyword or name like ?keyword)
+{% endif %}

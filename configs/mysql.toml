@@ -1,0 +1,7 @@
+# This is a TOML document. Boom~
+host = "127.0.0.1"
+port = 3306
+user = "root"
+pswd = "root123456"
+dbname = "testdb"
+charset = "utf8mb4"

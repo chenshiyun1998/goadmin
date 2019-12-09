@@ -1,0 +1,5 @@
+# This is a TOML document. Boom~
+addr = ":8000"
+timeout = "1s"
+read_timeout = "30s"
+write_timeout = "30s"
