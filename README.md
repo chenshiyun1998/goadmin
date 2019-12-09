@@ -1,17 +1,17 @@
 # goadmin
-1. goadmin一键生成自由灵活配置角色、权限、用户管理脚手架代码的生成工具
-2. goadmin可一键生成开箱即用的源码程序，一键生成基础的增删改查前后端代码
-2. 生成的前端代码使用Vue、ElementUI、vue-element-admin等开源项目
-3. 生成的后端代码使用gin、xormplus、casbin、gf、jwt等开源项目
+1. goadmin可根据组织结构一键生成具有多租户权限管理功能的脚手架，含前端和后端代码
+2. goadmin可根据表结构配置一键生成基础的增删改查前端和后端代码
+3. 生成的前端代码使用Vue、ElementUI、vue-element-admin等开源项目
+4. 生成的后端代码使用gin、xormplus、casbin、gf、jwt等开源项目
 
-# 多层级权限架构
+# 多租户多层级权限架构
 1. 例如我的系统层级结构是：平台->银行->服务商->商家，我们暂且叫这四个层级为机构类型，如下图：
 ![权限架构](https://images.gitee.com/uploads/images/2019/0718/093322_313ae8bc_88608.jpeg "")
 
 2. 例如现在平台下有10个银行，每个银行有20个服务商，每个服务商有30个商户，并且要求每个银行、服务商、商户都有自己的角色、权限、用户管理
 
 ### 按上面这种业务层级机构来使用goadmin完成权限管理，使用步骤如下：
-1. git clone https://github.com/gopark001/goadmin
+1. git clone https://github.com/wangwei123/goadmin
 2. cd goadmin/configs
 3. 修改mysql.toml，将mysql配置信息改为你的数据库信息，数据库名称可随意
 4. 修改casbin.toml，将mysql配置信息改为你的数据库信息，且数据库名称必须为casbin
