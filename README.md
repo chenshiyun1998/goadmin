@@ -1,6 +1,6 @@
 # goadmin
-1. goadmin可一键生成具有多租户的权限管理功能的脚手架，包含前端和后端代码
-2. goadmin可根据配置文件一键生成基础的增删改查前端和后端代码
+1. goadmin可根据组织结构一键生成具有多租户权限管理功能的脚手架，含前端和后端代码
+2. goadmin可根据表结构配置一键生成基础的增删改查前端和后端代码
 3. 生成的前端代码使用Vue、ElementUI、vue-element-admin等开源项目
 4. 生成的后端代码使用gin、xormplus、casbin、gf、jwt等开源项目
 
