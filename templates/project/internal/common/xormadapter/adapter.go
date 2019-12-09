@@ -19,13 +19,11 @@
 package xormadapter
 
 import (
-	"errors"
 	"github.com/xormplus/xorm"
 	"runtime"
 
 	"github.com/casbin/casbin/model"
 	"github.com/casbin/casbin/persist"
-	"github.com/lib/pq"
 )
 
 type CasbinRule struct {
@@ -42,7 +40,6 @@ type CasbinRule struct {
 type Adapter struct {
 	driverName     string
 	dataSourceName string
-	dbSpecified    bool
 	engine         *xorm.Engine
 }
 
@@ -56,19 +53,10 @@ func finalizer(a *Adapter) {
 // It's up to whether you have specified an existing DB in dataSourceName.
 // If dbSpecified == true, you need to make sure the DB in dataSourceName exists.
 // If dbSpecified == false, the adapter will automatically create a DB named "casbin".
-func NewAdapter(driverName string, dataSourceName string, dbSpecified ...bool) *Adapter {
+func NewAdapter(driverName string, dataSourceName string) *Adapter {
 	a := &Adapter{}
 	a.driverName = driverName
 	a.dataSourceName = dataSourceName
-
-	if len(dbSpecified) == 0 {
-		a.dbSpecified = false
-	} else if len(dbSpecified) == 1 {
-		a.dbSpecified = dbSpecified[0]
-	} else {
-		panic(errors.New("invalid parameter: dbSpecified"))
-	}
-
 	// Open the DB, create it if not existed.
 	a.open()
 
@@ -86,56 +74,12 @@ func NewAdapterByEngine(engine *xorm.Engine) *Adapter {
 	return a
 }
 
-func (a *Adapter) createDatabase() error {
-	var err error
-	var engine *xorm.Engine
-	if a.driverName == "postgres" {
-		engine, err = xorm.NewEngine(a.driverName, a.dataSourceName+" dbname=postgres")
-	} else {
-		engine, err = xorm.NewEngine(a.driverName, a.dataSourceName)
-	}
-	if err != nil {
-		return err
-	}
-	defer engine.Close()
-
-	if a.driverName == "postgres" {
-		if _, err = engine.Exec("CREATE DATABASE casbin"); err != nil {
-			// 42P04 is	duplicate_database
-			if pqerr, ok := err.(*pq.Error); ok && pqerr.Code == "42P04" {
-				return nil
-			}
-		}
-	} else if a.driverName != "sqlite3" {
-		_, err = engine.Exec("CREATE DATABASE IF NOT EXISTS casbin")
-	}
-	return err
-}
-
 func (a *Adapter) open() {
 	var err error
 	var engine *xorm.Engine
-
-	if a.dbSpecified {
-		engine, err = xorm.NewEngine(a.driverName, a.dataSourceName)
-		if err != nil {
-			panic(err)
-		}
-	} else {
-		if err = a.createDatabase(); err != nil {
-			panic(err)
-		}
-
-		if a.driverName == "postgres" {
-			engine, err = xorm.NewEngine(a.driverName, a.dataSourceName+" dbname=casbin")
-		} else if a.driverName == "sqlite3" {
-			engine, err = xorm.NewEngine(a.driverName, a.dataSourceName)
-		} else {
-			engine, err = xorm.NewEngine(a.driverName, a.dataSourceName+"casbin")
-		}
-		if err != nil {
-			panic(err)
-		}
+	engine, err = xorm.NewEngine(a.driverName, a.dataSourceName)
+	if err != nil {
+		panic(err)
 	}
 
 	a.engine = engine

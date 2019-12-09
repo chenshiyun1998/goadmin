@@ -8,27 +8,7 @@
     "org_type_name":  "string,40,所属机构类型名称,6",
     "account":        "string,40,管理员账号,7"
   },
-  "service_provider": {
-    "name":           "string,80,服务商名称,1",
-    "contact_name":   "string,40,联系人,2",
-    "service_phone":  "string,20,联系电话,3",
-    "address":        "string,80,联系地址,4",
-    "org_type_id":    "int64, 20,所属机构类型ID,5",
-    "org_type_name":  "string,40,所属机构类型名称,6",
-    "account":        "string,40,管理员账号,7"
-  },
-  "shop": {
-    "name":           "string,80,商家名称,1",
-    "contact_name":   "string,40,联系人,2",
-    "service_phone":  "string,20,服务电话,3",
-    "address":        "string,80,商家地址,4",
-    "org_type_id":    "int64, 20,所属机构类型ID,5",
-    "org_type_name":  "string,40,所属机构类型名称,6",
-    "account":        "string,40,管理员账号,7"
-  },
   "desc": {
-    "bank": "银行",
-    "service_provider": "服务商",
-    "shop": "商家"
+    "bank": "银行"
   }
 }

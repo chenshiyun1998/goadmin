@@ -34,7 +34,7 @@ func init() {
 // 权限配置持久化
 func NewEnforcer() *casbin.Enforcer {
 	if enforcer == nil {
-		dataSource := fmt.Sprintf("%s:%s@tcp(%s:%d)/", conf.CasbinConf.User, conf.CasbinConf.Pswd, conf.CasbinConf.Host, conf.CasbinConf.Port)
+		dataSource := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", conf.CasbinConf.User, conf.CasbinConf.Pswd, conf.CasbinConf.Host, conf.CasbinConf.Port, conf.CasbinConf.Dbname)
 		a := xormadapter.NewAdapter("mysql", dataSource)
 
 		enforcer = casbin.NewEnforcer(confPath, a)

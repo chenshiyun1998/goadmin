@@ -1,6 +1,4 @@
 [
   { "id":1, "parent_id":0, "name":"平台",   "code":"platform" },
-  { "id":2, "parent_id":1, "name":"银行",   "code":"bank" },
-  { "id":3, "parent_id":2, "name":"服务商", "code":"service_provider" },
-  { "id":4, "parent_id":3, "name":"商户",   "code":"shop" }
+  { "id":2, "parent_id":1, "name":"银行",   "code":"bank" }
 ]
