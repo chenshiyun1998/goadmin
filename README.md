@@ -1,8 +1,8 @@
 # goadmin
 1. goadmin可根据组织结构一键生成具有多租户权限管理功能的脚手架，含前端和后端代码
 2. goadmin可根据表结构配置一键生成基础的增删改查前端和后端代码
-3. 生成的前端代码使用Vue、ElementUI、vue-element-admin等开源项目
-4. 生成的后端代码使用gin、xormplus、casbin、gf、jwt等开源项目
+3. 前端代码使用Vue、ElementUI、vue-element-admin等开源项目
+4. 后端代码使用gin、xormplus、casbin、gf、jwt等开源项目
 
 # 多租户多层级权限架构
 1. 例如我的系统层级结构是：平台->银行->服务商->商家，我们暂且叫这四个层级为机构类型，如下图：
